@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
       */
 
       public function inicio(Request $request){
-          return $this->render("base.html.twig", ["var" => "variable", "var2" => "variable2"]);
+          return $this->render("base.html.twig", ["var" => "mostrar", "var2" => "variable2"]);
       }
  }
 
