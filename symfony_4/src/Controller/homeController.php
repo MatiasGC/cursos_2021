@@ -20,5 +20,23 @@ use Symfony\Component\HttpFoundation\Request;
       public function inicio(Request $request){
           return $this->render("base.html.twig", ["var" => "mostrar", "var2" => "variable2"]);
       }
+
+     /**
+      *     @Rest\Get("/usuarios")
+      */
+
+      public function usuarios(Request $request){
+        return $this->render("listaUsuarios.html.twig", ["var" => "mostrar", "var2" => "variable2"]);
+    }
+
+     /**
+      *     @Rest\Get("/articulos")
+      */
+
+      public function articulos(Request $request){
+        return $this->render("listaArticulos.html.twig", ["var" => "mostrar", "var2" => "variable2"]);
+    }
  }
+
+
 
