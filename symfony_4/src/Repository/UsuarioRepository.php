@@ -19,6 +19,15 @@ class UsuarioRepository extends ServiceEntityRepository
         parent::__construct($registry, Usuario::class);
     }
 
+    public function findUsersByName($nombre){
+        $qb = $this->getEntityManager()->createQueryBuilder()
+            ->select('u')
+            ->from('App:Usuario', 'u')
+            ->where('u.nombre = :nombre')
+            ->setParameter('nombre', $nombre);
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Usuario[] Returns an array of Usuario objects
     //  */
