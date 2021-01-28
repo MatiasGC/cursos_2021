@@ -22,14 +22,21 @@ use App\Entity\Usuario;
 
       public function inicio(Request $request){
 
-        //Tengo el Entity Manager
+        //Acceso a los datos
         $em = $this->getDoctrine()->getManager();
-
         $usuarios = $em->getRepository(Usuario::class)->findAll();
+        $repositorio = $this->getDoctrine()->getRepository(Usuario::class); 
 
-        #$repositorio = $this->getDoctrine()->getRepository(Usuario::class); 
+        //Persistencia de datos
+        $usuario = new Usuario(
+            'Pedro',
+            'Gomez',
+            'pedro@gmail.com',
+            '123456'
+        );
 
-        dd($usuarios);
+        $valor = $em->persist($usuario); //Da de alta los datos en la BD
+        $em->flush(); //Termina de asentar los datos.
 
 
           return $this->render("base.html.twig", ["var" => $usuarios, "var2" => "variable2"]);
