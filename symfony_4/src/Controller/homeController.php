@@ -8,7 +8,9 @@ use FOS\RestBundle\Request\ParamFetcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 use App\Repository\UsuarioRepository;
+use App\Repository\ProductoRepository;
 use App\Entity\Usuario;
+use App\Entity\Producto;
 
 /**
  *  @Rest\Route("/inicio")
@@ -24,19 +26,23 @@ use App\Entity\Usuario;
 
         //Acceso a los datos
         $em = $this->getDoctrine()->getManager();
-        $usuarios = $em->getRepository(Usuario::class)->findAll();
-        $repositorio = $this->getDoctrine()->getRepository(Usuario::class); 
+/*         $usuarios = $em->getRepository(Usuario::class)->findAll();
+        $repositorio = $this->getDoctrine()->getRepository(Usuario::class);  */
+
+        $producto = $em->getRepository(Producto::class)->findProductByName("Azucar");
+
+        dd($producto);
 
         //Persistencia de datos
-        $usuario = new Usuario(
+/*         $usuario = new Usuario(
             'Pedro',
             'Gomez',
             'pedro@gmail.com',
             '123456'
-        );
+        ); */
 
-        $valor = $em->persist($usuario); //Da de alta los datos en la BD
-        $em->flush(); //Termina de asentar los datos.
+       // $valor = $em->persist($usuario); //Da de alta los datos en la BD
+        //$em->flush(); //Termina de asentar los datos.
 
 
           return $this->render("base.html.twig", ["var" => $usuarios, "var2" => "variable2"]);
