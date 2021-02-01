@@ -28,6 +28,15 @@ class UsuarioRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function findUserByEmail($email){
+        $qb = $this->getEntityManager()->createQueryBuilder()
+            ->select('u')
+            ->from('App:Usuario', 'u')
+            ->where('u.email = :email')
+            ->setParameter('email', $email);
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Usuario[] Returns an array of Usuario objects
     //  */

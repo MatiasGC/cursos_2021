@@ -14,14 +14,24 @@ use App\Entity\Usuario;
  *  @Rest\Route("/inicio")
  */
 
-class homeController extends AbstractFOSRestController
+class usuarioController extends AbstractFOSRestController
 {
     /**
-     *     @Rest\Get("/login")
+     *     @Rest\Post("/login_check")
      */
-
      public function login(Request $request){
-         return $this->render("home.html.twig");
+
+        $em = $this->getDoctrine()->getManager();
+        $mail = $_POST["email"];
+        $password = $_POST["pass"];
+        $usuario = $em->getRepository(Usuario::class)->findUserByEmail($mail);
+
+        if(!empty($usuario)){
+            dd($usuario[0]);
+        }else{
+            return $this->render("login_error.html.twig");
+        }
+        
      }
 
     /**
@@ -29,5 +39,3 @@ class homeController extends AbstractFOSRestController
      */
 
 }
-
-
