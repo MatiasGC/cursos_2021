@@ -29,7 +29,7 @@ class usuarioController extends AbstractFOSRestController
         if(!empty($usuario)){
             $p = $em->getRepository(Usuario::class)->findUserByPass($password);
             if(!empty($p)){
-                return $this->render("login_success.html.twig");
+                return $this->render("login_success.html.twig", ["usuario" => $usuario[0]]);
             }
             else{
                 return $this->render("login_error.html.twig");
