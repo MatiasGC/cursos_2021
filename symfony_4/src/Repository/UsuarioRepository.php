@@ -28,6 +28,15 @@ class UsuarioRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function findUserByPass($password){
+        $qb = $this->getEntityManager()->createQueryBuilder()
+            ->select('u')
+            ->from('App:Usuario', 'u')
+            ->where('u.password = :password')
+            ->setParameter('password', $password);
+        return $qb->getQuery()->getResult(); 
+    }
+
     public function findUserByEmail($email){
         $qb = $this->getEntityManager()->createQueryBuilder()
             ->select('u')
